@@ -10,6 +10,9 @@ import business.DrugCatalog;
 import business.Validator;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -58,19 +61,19 @@ public class AddDrugsJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         drugIDJTextField = new javax.swing.JTextField();
-        drugNameJTextField = new javax.swing.JTextField();
-        drugTypeJTextField = new javax.swing.JTextField();
-        drugDescJTextField = new javax.swing.JTextField();
-        manufacturingDateJTextField = new javax.swing.JTextField();
-        expirationDateJTextField = new javax.swing.JTextField();
+        drugNamee = new javax.swing.JTextField();
+        DrugType = new javax.swing.JTextField();
+        DrugDescription = new javax.swing.JTextField();
+        ManufacturingDate = new javax.swing.JTextField();
+        ExpirationDate = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        drugAvailibilityJTextField = new javax.swing.JTextField();
-        priceJTextField = new javax.swing.JTextField();
-        compositionJTextField = new javax.swing.JTextField();
-        colorrDrugJTextField = new javax.swing.JTextField();
+        Quantity = new javax.swing.JTextField();
+        Price = new javax.swing.JTextField();
+        Composition = new javax.swing.JTextField();
+        DrugColor = new javax.swing.JTextField();
         createDrugJButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         errDrugNamejLabel = new javax.swing.JLabel();
@@ -166,12 +169,12 @@ public class AddDrugsJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(drugTypeJTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                                        .addComponent(DrugType, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                                         .addComponent(drugIDJTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(drugNameJTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(drugDescJTextField)
-                                        .addComponent(manufacturingDateJTextField)
-                                        .addComponent(expirationDateJTextField))
+                                        .addComponent(drugNamee, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(DrugDescription)
+                                        .addComponent(ManufacturingDate)
+                                        .addComponent(ExpirationDate))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel10))
                                 .addComponent(errDrugTypejLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,10 +191,10 @@ public class AddDrugsJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(errPricejLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(priceJTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                                .addComponent(drugAvailibilityJTextField, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(compositionJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(colorrDrugJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Price, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                                .addComponent(Quantity, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(Composition, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DrugColor, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(errCompositionjLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(errQtyjLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(48, Short.MAX_VALUE))
@@ -206,7 +209,7 @@ public class AddDrugsJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(drugIDJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(drugAvailibilityJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
                 .addComponent(errQtyjLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
@@ -214,9 +217,9 @@ public class AddDrugsJPanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(drugNameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(drugNamee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9)
-                            .addComponent(priceJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(3, 3, 3)
                         .addComponent(errDrugNamejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(errPricejLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -225,16 +228,16 @@ public class AddDrugsJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(drugTypeJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DrugType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10)
-                            .addComponent(compositionJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Composition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(errDrugTypejLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(errCompositionjLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(drugDescJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DrugDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errDrugDescjLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -242,16 +245,16 @@ public class AddDrugsJPanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(manufacturingDateJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ManufacturingDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
                             .addComponent(errMdatejLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(colorrDrugJTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DrugColor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(expirationDateJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ExpirationDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errEDatejLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
@@ -264,14 +267,47 @@ public class AddDrugsJPanel extends javax.swing.JPanel {
 
     private void createDrugJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createDrugJButtonActionPerformed
         // TODO add your handling code here:
-        String drugName = drugNameJTextField.getText();
-        String drugDesc = drugDescJTextField.getText();
+        try {
+           // create a mysql database connection
+           String myDriver = "org.gjt.mm.mysql.Driver";
+           String myUrl = "jdbc:mysql://localhost/pharmacy";
+           Class.forName(myDriver);
+           Connection conn = DriverManager.getConnection(myUrl, "root", "");
+
+           // the mysql insert statement
+           //register is the register name for the table in the database
+           String query = " insert into pharmacy(drugNamee,DrugType,DrugDescription,ManufacturingDate,ExpirationDate,Quantity,Price,Composition,DrugColor)"
+                   + " values (?,?,?,?,?,?,?,?,?)";
+
+           // create the mysql insert preparedstatement
+           PreparedStatement preparedStmt = conn.prepareStatement(query);
+           preparedStmt.setString(1,drugNamee.getText());
+           preparedStmt.setString(2, DrugType.getText());
+           preparedStmt.setString(3, DrugDescription.getText());
+           preparedStmt.setString(4,ManufacturingDate.getText());
+           preparedStmt.setString(5,ExpirationDate.getText());
+           preparedStmt.setString(6,Quantity.getText());
+           preparedStmt.setString(7,Price.getText());
+           preparedStmt.setString(8,Composition.getText());
+           preparedStmt.setString(9,DrugColor.getText());
+
+           // execute the preparedstatement
+           preparedStmt.execute();
+
+           conn.close();
+       } catch (Exception e) {
+           System.err.println("Got an exception!");
+           System.err.println(e.getMessage());
+       }
         
-        String drugType = drugTypeJTextField.getText();
-        String composition = compositionJTextField.getText();
+        String drugName = drugNamee.getText();
+        String drugDesc = DrugDescription.getText();
         
-        String manufacturingDate =manufacturingDateJTextField.getText();
-        String expiryDate = expirationDateJTextField.getText();
+        String drugType = DrugType.getText();
+        String composition = Composition.getText();
+        
+        String manufacturingDate =ManufacturingDate.getText();
+        String expiryDate = ExpirationDate.getText();
         
         
         validator = new Validator();
@@ -311,9 +347,9 @@ public class AddDrugsJPanel extends javax.swing.JPanel {
             //errCompositionjLabel6.setText("Composition  cannot be empty");
         }
         
-        if((validator.isStringValid(drugAvailibilityJTextField.getText())) &&
-                (validator.isValidInteger(drugAvailibilityJTextField.getText())) ){
-            int drugAvailibility = Integer.parseInt(drugAvailibilityJTextField.getText());
+        if((validator.isStringValid(Quantity.getText())) &&
+                (validator.isValidInteger(Quantity.getText())) ){
+            int drugAvailibility = Integer.parseInt(Quantity.getText());
            drug.setDrugAvailibility(drugAvailibility);
            errQtyjLabel7.setText("");
         }
@@ -322,8 +358,8 @@ public class AddDrugsJPanel extends javax.swing.JPanel {
             errorArray.add("Quantity ");
             //errQtyjLabel7.setText("Enter a valid availability");
         }
-        if((validator.isStringValid(priceJTextField.getText())) && 
-                (validator.isValidInteger(priceJTextField.getText())) ){
+        if((validator.isStringValid(Price.getText())) && 
+                (validator.isValidInteger(Price.getText())) ){
            /* try {
                 int drugPrice = Integer.parseInt(priceJTextField.getText());
                  drug.setDrugPrice(drugPrice);
@@ -331,8 +367,8 @@ public class AddDrugsJPanel extends javax.swing.JPanel {
             catch(NumberFormatException nfe){
                 errPricejLabel5.setText("Enter a integer value");
             }*/
-            int drugPrice = Integer.parseInt(priceJTextField.getText());
-            drug.setDrugPrice(Integer.parseInt(priceJTextField.getText()));
+            int drugPrice = Integer.parseInt(Price.getText());
+            drug.setDrugPrice(Integer.parseInt(Price.getText()));
             
           errPricejLabel5.setText("");
         }
@@ -410,14 +446,17 @@ public class AddDrugsJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField colorrDrugJTextField;
-    private javax.swing.JTextField compositionJTextField;
+    private javax.swing.JTextField Composition;
+    private javax.swing.JTextField DrugColor;
+    private javax.swing.JTextField DrugDescription;
+    private javax.swing.JTextField DrugType;
+    private javax.swing.JTextField ExpirationDate;
+    private javax.swing.JTextField ManufacturingDate;
+    private javax.swing.JTextField Price;
+    private javax.swing.JTextField Quantity;
     private javax.swing.JButton createDrugJButton;
-    private javax.swing.JTextField drugAvailibilityJTextField;
-    private javax.swing.JTextField drugDescJTextField;
     private javax.swing.JTextField drugIDJTextField;
-    private javax.swing.JTextField drugNameJTextField;
-    private javax.swing.JTextField drugTypeJTextField;
+    private javax.swing.JTextField drugNamee;
     private javax.swing.JLabel errCompositionjLabel6;
     private javax.swing.JLabel errDrugDescjLabel2;
     private javax.swing.JLabel errDrugNamejLabel;
@@ -426,7 +465,6 @@ public class AddDrugsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel errMdatejLabel3;
     private javax.swing.JLabel errPricejLabel5;
     private javax.swing.JLabel errQtyjLabel7;
-    private javax.swing.JTextField expirationDateJTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -439,8 +477,6 @@ public class AddDrugsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField manufacturingDateJTextField;
-    private javax.swing.JTextField priceJTextField;
     // End of variables declaration//GEN-END:variables
 
     

@@ -44,12 +44,12 @@
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="drugTypeJTextField" pref="112" max="32767" attributes="0"/>
+                                      <Component id="DrugType" pref="112" max="32767" attributes="0"/>
                                       <Component id="drugIDJTextField" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="drugNameJTextField" alignment="0" min="-2" pref="108" max="-2" attributes="0"/>
-                                      <Component id="drugDescJTextField" max="32767" attributes="0"/>
-                                      <Component id="manufacturingDateJTextField" max="32767" attributes="0"/>
-                                      <Component id="expirationDateJTextField" max="32767" attributes="0"/>
+                                      <Component id="drugNamee" alignment="0" min="-2" pref="108" max="-2" attributes="0"/>
+                                      <Component id="DrugDescription" max="32767" attributes="0"/>
+                                      <Component id="ManufacturingDate" max="32767" attributes="0"/>
+                                      <Component id="ExpirationDate" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
@@ -71,11 +71,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="errPricejLabel5" min="-2" pref="158" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="priceJTextField" alignment="0" pref="43" max="32767" attributes="0"/>
-                              <Component id="drugAvailibilityJTextField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Price" alignment="0" pref="43" max="32767" attributes="0"/>
+                              <Component id="Quantity" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="compositionJTextField" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                          <Component id="colorrDrugJTextField" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
+                          <Component id="Composition" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                          <Component id="DrugColor" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
                           <Component id="errCompositionjLabel6" min="-2" pref="158" max="-2" attributes="0"/>
                           <Component id="errQtyjLabel7" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
                       </Group>
@@ -95,7 +95,7 @@
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="drugIDJTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="drugAvailibilityJTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Quantity" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
               <Component id="errQtyjLabel7" min="-2" pref="11" max="-2" attributes="0"/>
@@ -104,9 +104,9 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="drugNameJTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="drugNamee" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="priceJTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Price" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                       <Component id="errDrugNamejLabel" min="-2" pref="11" max="-2" attributes="0"/>
@@ -118,9 +118,9 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="drugTypeJTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="DrugType" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="compositionJTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Composition" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="errDrugTypejLabel1" min="-2" pref="11" max="-2" attributes="0"/>
@@ -130,7 +130,7 @@
               <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="drugDescJTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="DrugDescription" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="errDrugDescjLabel2" min="-2" pref="11" max="-2" attributes="0"/>
@@ -139,7 +139,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="manufacturingDateJTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ManufacturingDate" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -147,12 +147,12 @@
                           <Component id="errMdatejLabel3" min="-2" pref="11" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="colorrDrugJTextField" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="DrugColor" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="expirationDateJTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ExpirationDate" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="errEDatejLabel4" min="-2" pref="11" max="-2" attributes="0"/>
@@ -207,15 +207,15 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="drugNameJTextField">
+    <Component class="javax.swing.JTextField" name="drugNamee">
     </Component>
-    <Component class="javax.swing.JTextField" name="drugTypeJTextField">
+    <Component class="javax.swing.JTextField" name="DrugType">
     </Component>
-    <Component class="javax.swing.JTextField" name="drugDescJTextField">
+    <Component class="javax.swing.JTextField" name="DrugDescription">
     </Component>
-    <Component class="javax.swing.JTextField" name="manufacturingDateJTextField">
+    <Component class="javax.swing.JTextField" name="ManufacturingDate">
     </Component>
-    <Component class="javax.swing.JTextField" name="expirationDateJTextField">
+    <Component class="javax.swing.JTextField" name="ExpirationDate">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
@@ -237,13 +237,13 @@
         <Property name="text" type="java.lang.String" value="Drug color"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="drugAvailibilityJTextField">
+    <Component class="javax.swing.JTextField" name="Quantity">
     </Component>
-    <Component class="javax.swing.JTextField" name="priceJTextField">
+    <Component class="javax.swing.JTextField" name="Price">
     </Component>
-    <Component class="javax.swing.JTextField" name="compositionJTextField">
+    <Component class="javax.swing.JTextField" name="Composition">
     </Component>
-    <Component class="javax.swing.JTextField" name="colorrDrugJTextField">
+    <Component class="javax.swing.JTextField" name="DrugColor">
     </Component>
     <Component class="javax.swing.JButton" name="createDrugJButton">
       <Properties>

@@ -5,6 +5,12 @@
  */
 package userinterface.storeAdmin;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import user_Interface.MainJFrame;
 import user_Interface.MainJFrame1;
@@ -18,8 +24,52 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+   ArrayList<String> UserName= new ArrayList<>();
+   ArrayList<String> Password= new ArrayList<>();
+
     public Login() {
         initComponents();
+        
+         try {
+           // create a mysql database connection
+           String myDriver = "org.gjt.mm.mysql.Driver";
+           String myUrl = "jdbc:mysql://localhost/pharmacy";
+           Class.forName(myDriver);
+           Connection conn = DriverManager.getConnection(myUrl, "root", "");
+
+           // the mysql insert statement
+           //register is the register name for the table in the database
+        
+           // create the mysql insert preparedstatement
+          
+            String query = "SELECT * FROM pharmacy";
+
+           // create the java statement
+           Statement st = conn.createStatement();
+
+           // execute the query, and get a java resultset
+           ResultSet rs = st.executeQuery(query);
+
+           // iterate through the java resultset
+           while (rs.next()) {
+               int id = rs.getInt("id");
+               String username = rs.getString("UserName");
+               //int age = rs.getInt("age");
+               String pass = rs.getString("Password");
+               if (UserName.contains(username) && Password.contains(pass)) {
+                   continue;
+               } else {
+                   UserName.add(username);
+                   Password.add(pass);
+               }
+           }
+           st.close();
+
+           conn.close();
+       } catch (Exception e) {
+           System.err.println("Got an exception!");
+           System.err.println(e.getMessage());
+       }
     }
 
     /**
@@ -34,10 +84,10 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        login = new javax.swing.JTextField();
+        usernametxt = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        passtxtf1 = new javax.swing.JTextField();
+        passwordtxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         loginback = new javax.swing.JButton();
@@ -52,9 +102,9 @@ public class Login extends javax.swing.JFrame {
 
         jLabel5.setText("Username");
 
-        login.addActionListener(new java.awt.event.ActionListener() {
+        usernametxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginActionPerformed(evt);
+                usernametxtActionPerformed(evt);
             }
         });
 
@@ -66,7 +116,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(login, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                .addComponent(usernametxt, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -75,7 +125,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usernametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -83,9 +133,9 @@ public class Login extends javax.swing.JFrame {
 
         jLabel6.setText("Password");
 
-        passtxtf1.addActionListener(new java.awt.event.ActionListener() {
+        passwordtxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passtxtf1ActionPerformed(evt);
+                passwordtxtActionPerformed(evt);
             }
         });
 
@@ -97,7 +147,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(passtxtf1, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                .addComponent(passwordtxt, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                 .addGap(12, 12, 12))
         );
         jPanel2Layout.setVerticalGroup(
@@ -106,7 +156,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(passtxtf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -189,13 +239,13 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+    private void usernametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernametxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_loginActionPerformed
+    }//GEN-LAST:event_usernametxtActionPerformed
 
-    private void passtxtf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passtxtf1ActionPerformed
+    private void passwordtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordtxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passtxtf1ActionPerformed
+    }//GEN-LAST:event_passwordtxtActionPerformed
 
     private void loginbackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginbackMouseClicked
         // TODO add your handling code here:
@@ -225,6 +275,9 @@ public class Login extends javax.swing.JFrame {
         m.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         m.setVisible(true);
         this.dispose();
+        
+        
+       
         
 
     }//GEN-LAST:event_loginbtnActionPerformed
@@ -272,9 +325,9 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField login;
     private javax.swing.JButton loginback;
     private javax.swing.JButton loginbtn;
-    private javax.swing.JTextField passtxtf1;
+    private javax.swing.JTextField passwordtxt;
+    private javax.swing.JTextField usernametxt;
     // End of variables declaration//GEN-END:variables
 }
